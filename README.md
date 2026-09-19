@@ -1,16 +1,36 @@
-# React + Vite
+# Memo Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+클라우드컴퓨팅실습 개인 과제를 위해 제작한 React 기반 메모 애플리케이션 프론트엔드입니다.
 
-Currently, two official plugins are available:
+Render에 배포된 FastAPI Backend와 API 통신을 수행합니다.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 주요 기능
 
-## React Compiler
+- 메모 목록 조회
+- 새로운 메모 추가
+- 메모 삭제
+- FastAPI Backend API 연동
+- 개인 소개 페이지 이동 기능
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 사용 기술
 
-## Expanding the Oxlint configuration
+- React
+- Vite
+- JavaScript
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+## Backend 연동
+
+FastAPI Backend의 REST API를 호출하여 메모 데이터를 조회, 추가 및 삭제합니다.
+
+## 배포
+
+Vercel  
+https://memo-frontend-sand.vercel.app/
+
+## 관련 프로젝트
+
+- Personal Page  
+  https://github.com/daerogu/my-page
+
+- Memo Backend  
+  https://github.com/daerogu/memo-backend
