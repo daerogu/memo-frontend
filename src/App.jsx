@@ -54,7 +54,7 @@ return (
     </ul>
 
     <a
-      href="https://my-page-daerogu.vercel.app/"
+      href="https://my-page-lake-gamma.vercel.app/"
       style={{
         position: "absolute",
         top: 20,
