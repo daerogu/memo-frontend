@@ -25,23 +25,53 @@ export default function App() {
     await fetch(`${API_URL}/memos/${id}`, { method: "DELETE" });
     loadMemos();
   };
+return (
+  <div style={{ maxWidth: 480, margin: "40px auto", fontFamily: "sans-serif" }}>
+    <h1>📝 메모장 Note</h1>
 
-  return (
-    <div style={{ maxWidth: 480, margin: "40px auto", fontFamily: "sans-serif" }}>
-      <h1>📝 메모장 Note</h1>
-      <div style={{ display: "flex", gap: 8 }}>
-        <input value={text} onChange={(e) => setText(e.target.value)}
-          placeholder="메모를 입력하세요" style={{ flex: 1, padding: 8 }} />
-        <button onClick={addMemo}>추가</button>
-      </div>
-      <ul>
-        {memos.map((m) => (
-          <li key={m.id}>
-            {m.content}
-            <button onClick={() => deleteMemo(m.id)} style={{ marginLeft: 8 }}>삭제</button>
-          </li>
-        ))}
-      </ul>
+    <div style={{ display: "flex", gap: 8 }}>
+      <input
+        value={text}
+        onChange={(e) => setText(e.target.value)}
+        placeholder="메모를 입력하세요"
+        style={{ flex: 1, padding: 8 }}
+      />
+      <button onClick={addMemo}>추가</button>
     </div>
-  );
+
+    <ul>
+      {memos.map((m) => (
+        <li key={m.id}>
+          {m.content}
+          <button
+            onClick={() => deleteMemo(m.id)}
+            style={{ marginLeft: 8 }}
+          >
+            삭제
+          </button>
+        </li>
+      ))}
+    </ul>
+
+    <a
+      href="https://my-page-daerogu.vercel.app/"
+      style={{
+        position: "absolute",
+        top: 20,
+        right: 20,
+        padding: "10px 16px",
+        backgroundColor: "#2563eb",
+        color: "white",
+        textDecoration: "none",
+        borderRadius: 8,
+        fontWeight: 600,
+        cursor: "pointer",
+      }}
+    >
+      👤 개인 소개 페이지
+    </a>  
+  </div>
+  
+);
 }
+
