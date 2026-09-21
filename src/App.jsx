@@ -88,7 +88,8 @@ export default function App() {
         {/* 로딩 중일 때만 표시 */}
         {loading && (
           <div className="loading-text">
-            방명록을 불러오는 중...
+            방명록을 불러오는 중... 
+            30초정도 걸릴 수 있어요. 잠시만 기다려주세요.
           </div>
         )}
 
