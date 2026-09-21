@@ -64,16 +64,23 @@ export default function App() {
         <h1>✍️ 방명록</h1>
 
         <div className="guestbook-form">
-          <input
-            value={text}
-            onChange={(e) => setText(e.target.value)}
-            onKeyDown={(e) => {
-              if (e.key === "Enter") {
-                addMemo();
-              }
-            }}
-            placeholder="하고 싶은 말을 남겨보세요"
-          />
+          <div className="input-wrap">
+            <input
+              value={text}
+              onChange={(e) => setText(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  addMemo();
+                }
+              }}
+              maxLength={200}
+              placeholder="하고 싶은 말을 남겨보세요"
+            />
+
+            <span className="char-count">
+              {text.length} / 200
+            </span>
+          </div>
 
           <button onClick={addMemo}>남기기</button>
         </div>
