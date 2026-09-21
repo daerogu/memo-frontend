@@ -335,3 +335,13 @@ body {
     font-size: 14px;
   }
 }
+.loading-text {
+  width: 100%;
+  max-width: 400px;
+  margin: 18px auto 0;
+
+  text-align: center;
+
+  font-size: 13px;
+  color: #9ca3af;
+}

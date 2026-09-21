@@ -6,6 +6,7 @@ const API_URL = import.meta.env.VITE_API_URL || "http://localhost:8000";
 export default function App() {
   const [memos, setMemos] = useState([]);
   const [text, setText] = useState("");
+  const [loading, setLoading] = useState(true);
 
   // 처음 뜰 때 서버에서 목록을 불러온다
   useEffect(() => {
@@ -14,9 +15,15 @@ export default function App() {
 
   // 목록 조회 GET
   const loadMemos = async () => {
-    const res = await fetch(`${API_URL}/memos`);
-    const data = await res.json();
-    setMemos(data);
+    setLoading(true);
+
+    try {
+      const res = await fetch(`${API_URL}/memos`);
+      const data = await res.json();
+      setMemos(data);
+    } finally {
+      setLoading(false);
+    }
   };
 
   // 방명록 작성 POST
@@ -39,6 +46,10 @@ export default function App() {
 
   // 방명록 삭제 DELETE
   const deleteMemo = async (id) => {
+    const confirmed = window.confirm("방명록을 삭제하시겠습니까?");
+
+    if (!confirmed) return;
+
     await fetch(`${API_URL}/memos/${id}`, {
       method: "DELETE",
     });
@@ -67,22 +78,32 @@ export default function App() {
           <button onClick={addMemo}>남기기</button>
         </div>
 
-        <div className="memo-list">
-          {memos.map((m, index) => (
-            <div key={m.id} className="memo-item">
-              <span className="memo-number">{index + 1}.</span>
+        {/* 로딩 중일 때만 표시 */}
+        {loading && (
+          <div className="loading-text">
+            방명록을 불러오는 중...
+          </div>
+        )}
 
-              <span className="memo-content">{m.content}</span>
+        {/* 로딩 완료 후 방명록 표시 */}
+        {!loading && (
+          <div className="memo-list">
+            {memos.map((m, index) => (
+              <div key={m.id} className="memo-item">
+                <span className="memo-number">{index + 1}.</span>
 
-              <button
-                className="delete-btn"
-                onClick={() => deleteMemo(m.id)}
-              >
-                삭제
-              </button>
-            </div>
-          ))}
-        </div>
+                <span className="memo-content">{m.content}</span>
+
+                <button
+                  className="delete-btn"
+                  onClick={() => deleteMemo(m.id)}
+                >
+                  삭제
+                </button>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
 
       {/* 오른쪽 상단 패널 */}
@@ -101,7 +122,7 @@ export default function App() {
 
           <div className="course-mini-item">
             <div className="course-mini-name">
-              1. 자기소개 페이지 
+              1. 자기소개 페이지
             </div>
 
             <div className="course-mini-stack">
@@ -162,14 +183,14 @@ export default function App() {
               가계부 Swagger UI ↗
             </a>
           </div>
-        </div>
+
           <div className="course-mini-item">
             <div className="course-mini-name">
-              4. github 저장소 
+              4. GitHub 저장소
             </div>
 
             <div className="course-mini-stack">
-              
+              Source Code · README
             </div>
 
             <a
@@ -177,9 +198,10 @@ export default function App() {
               target="_blank"
               rel="noreferrer"
             >
-              github 둘러보기 ↗
+              GitHub 둘러보기 ↗
             </a>
           </div>
+        </div>
       </div>
     </>
   );
