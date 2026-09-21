@@ -151,7 +151,7 @@ export default function App() {
             </div>
 
             <div className="course-mini-stack">
-              FastAPI · Render
+              FastAPI · Render · Supabase
             </div>
 
             <a
@@ -163,6 +163,23 @@ export default function App() {
             </a>
           </div>
         </div>
+          <div className="course-mini-item">
+            <div className="course-mini-name">
+              4. github 저장소 
+            </div>
+
+            <div className="course-mini-stack">
+              
+            </div>
+
+            <a
+              href="https://github.com/daerogu"
+              target="_blank"
+              rel="noreferrer"
+            >
+              github 둘러보기 ↗
+            </a>
+          </div>
       </div>
     </>
   );
