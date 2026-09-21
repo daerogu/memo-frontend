@@ -7,6 +7,7 @@ export default function App() {
   const [memos, setMemos] = useState([]);
   const [text, setText] = useState("");
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
 
   // 처음 뜰 때 서버에서 목록을 불러온다
   useEffect(() => {
@@ -16,11 +17,20 @@ export default function App() {
   // 목록 조회 GET
   const loadMemos = async () => {
     setLoading(true);
+    setError(false);
 
     try {
       const res = await fetch(`${API_URL}/memos`);
+
+      if (!res.ok) {
+        throw new Error(`HTTP ${res.status}`);
+      }
+
       const data = await res.json();
       setMemos(data);
+    } catch (err) {
+      console.error("방명록 불러오기 실패:", err);
+      setError(true);
     } finally {
       setLoading(false);
     }
@@ -88,13 +98,20 @@ export default function App() {
         {/* 로딩 중일 때만 표시 */}
         {loading && (
           <div className="loading-text">
-            방명록을 불러오는 중... 
-            30초정도 걸릴 수 있어요. 잠시만 기다려주세요.
+            방명록을 불러오는 중...
+            30초 정도 걸릴 수 있어요. 잠시만 기다려주세요.
+          </div>
+        )}
+
+        {/* 불러오기 실패 시 표시 */}
+        {!loading && error && (
+          <div className="loading-text">
+            방명록을 불러오지 못했습니다. 잠시 후 다시 시도해 주세요.
           </div>
         )}
 
         {/* 로딩 완료 후 방명록 표시 */}
-        {!loading && (
+        {!loading && !error && (
           <div className="memo-list">
             {memos.map((m, index) => (
               <div key={m.id} className="memo-item">
