@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import "./App.css";
 
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:8000";
 
@@ -14,7 +15,8 @@ export default function App() {
   // 목록 조회 GET
   const loadMemos = async () => {
     const res = await fetch(`${API_URL}/memos`);
-    setMemos(await res.json());
+    const data = await res.json();
+    setMemos(data);
   };
 
   // 방명록 작성 POST
@@ -23,8 +25,12 @@ export default function App() {
 
     await fetch(`${API_URL}/memos`, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ content: text }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        content: text,
+      }),
     });
 
     setText("");
@@ -41,74 +47,123 @@ export default function App() {
   };
 
   return (
-    <div
-      style={{
-        maxWidth: 480,
-        margin: "40px auto",
-        fontFamily: "sans-serif",
-      }}
-    >
-      <h1>✍️ 방명록</h1>
+    <>
+      {/* 메인 방명록 */}
+      <div className="guestbook-container">
+        <h1>✍️ 방명록</h1>
 
-      <div style={{ display: "flex", gap: 8 }}>
-        <input
-          value={text}
-          onChange={(e) => setText(e.target.value)}
-          placeholder="하고 싶은 말을 남겨보세요"
-          style={{
-            flex: 1,
-            padding: 8,
-          }}
-        />
-
-        <button onClick={addMemo}>남기기</button>
-      </div>
-
-      <div
-        style={{
-          width: "100%",
-          marginTop: 20,
-          textAlign: "left",
-        }}
-      >
-        {memos.map((m, index) => (
-          <div
-            key={m.id}
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: 10,
-              marginBottom: 10,
+        <div className="guestbook-form">
+          <input
+            value={text}
+            onChange={(e) => setText(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                addMemo();
+              }
             }}
-          >
-            <span>{index + 1}.</span>
+            placeholder="하고 싶은 말을 남겨보세요"
+          />
 
-            <span>{m.content}</span>
+          <button onClick={addMemo}>남기기</button>
+        </div>
 
-            <button onClick={() => deleteMemo(m.id)}>
-              삭제
-            </button>
-          </div>
-        ))}
+        <div className="memo-list">
+          {memos.map((m, index) => (
+            <div key={m.id} className="memo-item">
+              <span className="memo-number">{index + 1}.</span>
+
+              <span className="memo-content">{m.content}</span>
+
+              <button
+                className="delete-btn"
+                onClick={() => deleteMemo(m.id)}
+              >
+                삭제
+              </button>
+            </div>
+          ))}
+        </div>
       </div>
 
-      <a
-        href="https://my-page-lake-gamma.vercel.app/"
-        style={{
-          position: "fixed",
-          top: 20,
-          right: 20,
-          padding: "10px 16px",
-          backgroundColor: "#2563eb",
-          color: "white",
-          textDecoration: "none",
-          borderRadius: 8,
-          fontWeight: 600,
-          cursor: "pointer",
-        }}
-      >
-        👤 개인 소개 페이지 이동
-      </a>
-    </div>
+      {/* 오른쪽 상단 패널 */}
+      <div className="right-panel">
+        <a
+          href="https://my-page-lake-gamma.vercel.app/"
+          className="profile-link"
+        >
+          👤 개인 소개 페이지 이동
+        </a>
+
+        <div className="course-mini">
+          <div className="course-mini-title">
+            부록 · 수업 산출물
+          </div>
+
+          <div className="course-mini-item">
+            <div className="course-mini-name">
+              1. 자기소개 페이지 
+            </div>
+
+            <div className="course-mini-stack">
+              HTML · CSS · JavaScript · Vercel
+            </div>
+
+            <a
+              href="https://my-page-lake-gamma.vercel.app/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              자기소개 페이지 보기 ↗
+            </a>
+          </div>
+
+          <div className="course-mini-item">
+            <div className="course-mini-name">
+              2. 풀스택 실습 · 방명록
+            </div>
+
+            <div className="course-mini-stack">
+              React · FastAPI · Vercel · Render
+            </div>
+
+            <div className="course-mini-links">
+              <a
+                href="https://memo-frontend-sand.vercel.app/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                방명록 페이지 보기 ↗
+              </a>
+
+              <a
+                href="https://memo-backend-yeu0.onrender.com/docs"
+                target="_blank"
+                rel="noreferrer"
+              >
+                방명록 Swagger UI ↗
+              </a>
+            </div>
+          </div>
+
+          <div className="course-mini-item">
+            <div className="course-mini-name">
+              3. 가계부 Backend API
+            </div>
+
+            <div className="course-mini-stack">
+              FastAPI · Render
+            </div>
+
+            <a
+              href="https://expense-api-wgx5.onrender.com/docs"
+              target="_blank"
+              rel="noreferrer"
+            >
+              가계부 Swagger UI ↗
+            </a>
+          </div>
+        </div>
+      </div>
+    </>
   );
 }
