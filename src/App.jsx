@@ -73,12 +73,12 @@ export default function App() {
                   addMemo();
                 }
               }}
-              maxLength={200}
+              maxLength={30}
               placeholder="하고 싶은 말을 남겨보세요"
             />
 
             <span className="char-count">
-              {text.length} / 200
+              {text.length} / 30
             </span>
           </div>
 
