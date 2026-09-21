@@ -36,16 +36,22 @@ body {
 }
 
 
-/* 입력 영역 */
+/* =========================
+   입력 영역
+   ========================= */
 
 .guestbook-form {
   display: flex;
   gap: 10px;
+
+  max-width: 400px;
+  margin: 0 auto;
 }
 
 .guestbook-form input {
   flex: 1;
 
+  min-width: 0;
   height: 46px;
   padding: 0 14px;
 
@@ -79,14 +85,20 @@ body {
 }
 
 
-/* 방명록 목록 */
+/* =========================
+   방명록 목록
+   ========================= */
 
 .memo-list {
-  margin-top: 24px;
+  width: 100%;
+  max-width: 400px;
+
+  margin: 24px auto 0;
 }
 
 .memo-item {
-  display: flex;
+  display: grid;
+  grid-template-columns: 24px 1fr auto;
   align-items: center;
   gap: 10px;
 
@@ -94,15 +106,17 @@ body {
   margin-bottom: 8px;
 
   font-size: 15px;
+  text-align: left;
 }
 
 .memo-number {
-  min-width: 22px;
   color: #6b7280;
+  text-align: left;
 }
 
 .memo-content {
-  flex: 1;
+  text-align: left;
+  word-break: break-word;
 }
 
 .delete-btn {
@@ -137,7 +151,9 @@ body {
 }
 
 
-/* 자기소개 버튼 */
+/* =========================
+   자기소개 버튼
+   ========================= */
 
 .profile-link {
   display: block;
@@ -193,7 +209,9 @@ body {
 }
 
 
-/* 각 산출물 */
+/* =========================
+   각 산출물
+   ========================= */
 
 .course-mini-item {
   padding: 10px 0;
@@ -211,7 +229,9 @@ body {
 }
 
 
-/* 산출물 이름 */
+/* =========================
+   산출물 이름
+   ========================= */
 
 .course-mini-name {
   margin-bottom: 3px;
@@ -225,7 +245,9 @@ body {
 }
 
 
-/* 기술 스택 */
+/* =========================
+   기술 스택
+   ========================= */
 
 .course-mini-stack {
   margin-bottom: 3px;
@@ -239,7 +261,9 @@ body {
 }
 
 
-/* 링크 */
+/* =========================
+   링크
+   ========================= */
 
 .course-mini-item a {
   color: #2563eb;
@@ -252,6 +276,12 @@ body {
 
 .course-mini-item a:hover {
   text-decoration: underline;
+}
+
+.course-mini-links {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
 }
 
 
@@ -286,27 +316,22 @@ body {
   }
 
   .guestbook-form {
+    max-width: 100%;
     align-items: stretch;
-  }
-
-  .guestbook-form input {
-    min-width: 0;
   }
 
   .guestbook-form button {
     padding: 0 14px;
   }
-}
 
-.guestbook-form {
-  display: flex;
-  gap: 10px;
-  max-width: 400px;
-  margin: 0 auto;
-}
+  .memo-list {
+    max-width: 100%;
+  }
 
-.course-mini-links {
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
+  .memo-item {
+    grid-template-columns: 22px 1fr auto;
+    gap: 8px;
+
+    font-size: 14px;
+  }
 }
