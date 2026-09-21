@@ -1,14 +1,21 @@
 # 방명록 frontend
 
+> 전체 과제는 개인 소개 페이지 → 방명록 Frontend → FastAPI Backend → Supabase Database 구조로 구성되어 있습니다.
+
 ## 프로젝트 소개
 
-전체적인 흐름은 소개페이지 -> 방명록남기기 입니다.
+클라우드컴퓨팅실습 개인과제를 위해 제작한 방명록 Frontend입니다.
 
-클라우드컴퓨팅실습 개인 과제를 위해 제작한 방명록 Frontend입니다.
-React와 Vite를 이용하여 화면을 구현하고, Render에 배포된 FastAPI Backend와 API 통신이 이루어지도록 구성했습니다.
-개인소개 페이지간 양방향 이동이 가능하도록 페이지를 구성하였습니다.
+React와 Vite를 이용하여 화면을 구현하고,
+Render에 배포된 FastAPI Backend와 API 통신이 이루어지도록 구성했습니다.
+
+기존 메모 앱 실습을 개인 소개 페이지와 연결되는 방명록 형태로 변형했으며,
+개인 소개 페이지와 양방향 이동이 가능하도록 구성했습니다.
 
 ## 프로젝트 목적
+
+Frontend는 사용자의 입력을 받고 FastAPI Backend API를 호출하여
+방명록 데이터를 조회, 등록, 삭제합니다.
 
 React 기반 Frontend를 구현하고 FastAPI Backend API를 호출하여 실제 웹 환경에서 데이터를 조회, 작성 및 삭제하는 과정을 실습하는 것을 목표로 제작했습니다.
 
@@ -41,6 +48,8 @@ Vercel에 배포된 Frontend와 Render에 배포된 Backend를 연결하여 Fron
 - `vite.config.js` : Vite 설정
 - `.env` : Backend API 주소 설정
 
+## API 연동
+
 Frontend에서 FastAPI Backend의 REST API를 호출하여 데이터를 처리합니다.
 
 - `GET /memos` : 방명록 목록 조회
@@ -49,19 +58,16 @@ Frontend에서 FastAPI Backend의 REST API를 호출하여 데이터를 처리�
 
 ## 배포 주소
 
-Vercel
+| 구분 | 주소 |
+| --- | --- |
+| 개인 소개 페이지 | https://my-page-lake-gamma.vercel.app/ |
+| 방명록 Frontend | https://memo-frontend-sand.vercel.app/ |
+| 방명록 Swagger UI | https://memo-backend-yeu0.onrender.com/docs |
 
-https://memo-frontend-sand.vercel.app/
+## GitHub 저장소
 
-Backend API / Swagger UI
-
-https://memo-backend-yeu0.onrender.com/docs
-
-## 관련 프로젝트
-
-- Personal Page  
-  https://github.com/daerogu/my-page
-
-- Guestbook Backend  
-  https://github.com/daerogu/memo-backend
-
+| 프로젝트 | 저장소 |
+| --- | --- |
+| 개인 소개 페이지 | https://github.com/daerogu/my-page |
+| 방명록 Frontend | https://github.com/daerogu/memo-frontend |
+| 방명록 Backend | https://github.com/daerogu/memo-backend |
