@@ -40,7 +40,7 @@ Vercel에 배포된 Frontend와 Render에 배포된 Backend를 연결하여 Fron
 - GitHub
 - Vercel
 
-## 파일 구성
+## 주요 파일 구성
 
 - `src/App.jsx` : 방명록 화면 및 주요 기능 구현
 - `src/main.jsx` : React 애플리케이션 실행
